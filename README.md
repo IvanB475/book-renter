@@ -2,7 +2,13 @@
 
 ## Description
 
-Book renter app.
+For the simplicity of demonstration, DB is hosted on RDS and the app is hosted on EC2.
+App can be accessed at http://3.71.82.164:3000/
+I recommend checking out documentation first at /api to familiarize yourself with APIs available.
+For testing purposes 2 accounts have been created:
+- Admin account -> username: AdminDemo, password: admin
+- User account -> username: UserDemo, password: user
+
 
 ## Installation
 

@@ -27,14 +27,10 @@ export class UsersController {
     })
     @ApiParam({ name: "SignUpDto" })
     @UsePipes(new JoiValidationPipe(schema.signUp))
-    async signUpController(@Body() userData: SignUpDto, @Response() response) {
+    async signUpController(@Body() userData: SignUpDto) {
         try {
-            const jwtToken = await this.usersService.signUpService(userData.username, userData.password);
-            response.cookie('jwt', jwtToken, {
-                sameSite: 'strict',
-                httpOnly: true
-            })
-            return response.send({ message: 'Welcome to book renter! We are glad to have you :)' })
+            return await this.usersService.signUpService(userData.username, userData.password);
+
         } catch (err) {
             console.log(err);
             const ERR_MESSAGE = err.code == 23505 ? 'User with that username already exists' : 'Something went wrong';

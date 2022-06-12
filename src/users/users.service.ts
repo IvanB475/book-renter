@@ -17,7 +17,12 @@ export class UsersService {
         const user = await newUser.save();
         const token = this.utilsService.generateToken(user.id, user.role.name);
 
-        return token;
+        const SUCCESS_RESPONSE_MESSAGE = 'welcome to book renter app!';
+        const responseToUser = {
+            message: SUCCESS_RESPONSE_MESSAGE,
+            token
+        }
+        return responseToUser;
     }
 
     async loginService(username: string, password: string) {
