@@ -44,6 +44,8 @@ Current version has no test coverage
 - Search functionality to /gallery endpoint
 - Registration is too basic ( at least password confirmation should be added)
 - Payment integration
+- Use migrations instead of sync
+- Seed data
 
 
 
