@@ -48,6 +48,10 @@ export class UsersController {
         description: 'Something went wrong, description will be provided in error message'
     })
     @ApiResponse({
+        status: 401,
+        description: 'Wrong username or password'
+    })
+    @ApiResponse({
         status: 200,
         description: 'You have successfully logged in'
     })

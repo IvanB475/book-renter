@@ -30,7 +30,7 @@ export class UsersService {
         const isUser = await this.utilsService.validateLogin(password, user.password)
         if (!isUser) {
             const FAILURE_RESPONSE_MESSAGE = 'wrong username or password';
-            return FAILURE_RESPONSE_MESSAGE;
+            throw new UnauthorizedException(FAILURE_RESPONSE_MESSAGE);
         }
 
         const token = this.utilsService.generateToken(user.id, user.role.name);
