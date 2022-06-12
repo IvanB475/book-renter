@@ -28,7 +28,6 @@ export class BooksController {
         status: 201,
         description: 'New book was added'
     })
-    @ApiParam({ name: 'AddBookInfoDto' })
     @UsePipes(new JoiValidationPipe(schema.addBook))
     async addBookController(@Body() bookInfo: AddBookInfoDto) {
         try {
@@ -103,7 +102,6 @@ export class BooksController {
         status: 200,
         description: 'Book was successfully edited'
     })
-    @ApiParam({ name: "editBookInfoDto" })
     @UsePipes(new JoiValidationPipe(schema.editBook))
     async editBookController(@Body() bookInfo: editBookInfoDto, @Param('id') bookId: number) {
         try {

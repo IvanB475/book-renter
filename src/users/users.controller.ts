@@ -25,7 +25,6 @@ export class UsersController {
         status: 201,
         description: 'You have successfully registered'
     })
-    @ApiParam({ name: "SignUpDto" })
     @UsePipes(new JoiValidationPipe(schema.signUp))
     async signUpController(@Body() userData: SignUpDto) {
         try {
@@ -52,7 +51,6 @@ export class UsersController {
         status: 200,
         description: 'You have successfully logged in'
     })
-    @ApiParam({ name: "LoginDto" })
     @UsePipes(new JoiValidationPipe(schema.login))
     async loginController(@Body() userData: LoginDto, @Response() response) {
         try {
