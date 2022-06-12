@@ -20,9 +20,9 @@ export class isAdminMiddleware implements NestMiddleware {
         if (userRole === 'admin') {
             next();
         } else {
-        const ERR_MESSAGE = 'you are not allowed to use this route';
-        const ERR_STATUS = 401;
-        throw new HttpException(ERR_MESSAGE, ERR_STATUS)
+            const ERR_MESSAGE = 'you are not allowed to use this route';
+            const ERR_STATUS = 403;
+            throw new HttpException(ERR_MESSAGE, ERR_STATUS)
         }
     }
 }

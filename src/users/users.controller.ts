@@ -58,13 +58,9 @@ export class UsersController {
     @UsePipes(new JoiValidationPipe(schema.login))
     async loginController(@Body() userData: LoginDto, @Response() response) {
         try {
-            const jwtToken = await this.usersService.loginService(userData.username, userData.password);
-            response.cookie('jwt', jwtToken, {
-                sameSite: 'strict',
-                httpOnly: true
-            })
+            const responseToUser = await this.usersService.loginService(userData.username, userData.password);
             response.status(200);
-            return response.send({ message: 'Logged in - redirect to image gallery main screen' })
+            return response.send(responseToUser)
         } catch (err) {
             console.log(err);
             if (err.status == 401) {

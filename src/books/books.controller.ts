@@ -1,11 +1,12 @@
 import { Body, Controller, Delete, Get, Headers, HttpException, Param, Post, Put, Query, UsePipes } from '@nestjs/common';
-import { ApiBearerAuth, ApiOperation, ApiParam, ApiResponse, ApiSecurity } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiParam, ApiProperty, ApiResponse, ApiSecurity } from '@nestjs/swagger';
 import { UtilsService } from 'src/utils/utils.service';
 import { schema } from 'src/validation/joiSchema';
 import { JoiValidationPipe } from 'src/validation/joiValidationPipe';
 import { BooksService } from './books.service';
 import { AddBookInfoDto } from './dtos/addBookInfoDto';
 import { editBookInfoDto } from './dtos/editBookInfoDto';
+import { RentBookInfoDto } from './dtos/rentBookInfoDto';
 
 @Controller('books')
 export class BooksController {
@@ -153,11 +154,11 @@ export class BooksController {
         description: 'Book was successfully rented'
     })
     @ApiBearerAuth()
-    async rentBookController(@Body('quantity') quantity: number, @Headers() headers, @Param('id') bookId: number) {
+    async rentBookController(@Body() rentBookInfo: RentBookInfoDto, @Headers() headers, @Param('id') bookId: number) {
         try {
             const authToken = headers.authorization.split(' ')[1];
             const userId = this.utilsService.getUserIdFromToken(authToken);
-            return this.booksService.rentBookService(quantity, bookId, userId);
+            return this.booksService.rentBookService(rentBookInfo.quantity, bookId, userId);
         } catch (err) {
             console.log(err);
             const ERR_MESSAGE = err.message || 'error occured while trying to rent a book';

@@ -35,6 +35,12 @@ export class UsersService {
 
         const token = this.utilsService.generateToken(user.id, user.role.name);
 
-        return token;
+        const SUCCESS_RESPONSE_MESSAGE = 'Logged in - redirect to image gallery main screen';
+        const responseToUser = {
+            message: SUCCESS_RESPONSE_MESSAGE,
+            token
+        }
+
+        return responseToUser;
     }
 }

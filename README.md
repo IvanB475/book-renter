@@ -36,9 +36,14 @@ Current version has no test coverage
 
 ## additions required:
 - A lot of edge cases have to be covered, like for example delete book route returns success even if book with that id doesnt exist - doesnt delete anything, or so that currentlyRented cant be higher than totalAmountAvailable at any point.
-- Validation schemas exist just for demonstration purposes, they do not cover all endpoints, nor they are very useful
-- return a book endpoint is missing, which should also consider quantity (E.G. user can borrow 5 copies but return only 3 at some point)
+- Validation schemas exist just for demonstration purposes, they do not cover all endpoint and they are very basic
 - deleting a book that's rented or user who rented the book should be considered from business perspective and implemented accordingly
+- Error handling is very basic
+- Logger should be added
+- Endpoints missing: user settings (get, update, delete), return a book, cart...
+- Search functionality to /gallery endpoint
+- Registration is too basic ( at least password confirmation should be added)
+- Payment integration
 
 
 

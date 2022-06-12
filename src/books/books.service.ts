@@ -28,7 +28,6 @@ export class BooksService {
         return responseToUser;
     }
 
-    // returns message book doesnt exist but status is 200
     async getBookService(bookId: number) {
         const foundBook = await this.entityManager.findOneBy(BookEntity, { id: bookId });
         if (!foundBook) {
