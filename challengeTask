@@ -1,0 +1,14 @@
+Application consists of:
+1. Login and registration API.
+2. An API that allows a logged in user to borrow a book.
+3. An API that allows an admin to update, delete or add new books.
+4. An api that lists all books
+5. Save the books and users to a database. You can use a database engine of your choice.
+
+Successful login should route the user to the image gallery main screen. Unsuccessful login
+behavior is left free for the developer to handle. Registration form is not needed, the developer
+can implement seeder or mock data.
+● Registration and login
+● CRUD for books
+● Define roles. Admin can add, edit and delete books, while a regular user can borrow
+books.
