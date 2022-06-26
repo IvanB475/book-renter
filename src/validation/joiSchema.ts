@@ -23,6 +23,6 @@ export const schema = {
         totalAmountAvailable: Joi.number().min(1),
         currentlyRented: Joi.number().min(0),
         image: Joi.string()
-    })
+    }),
 
 }
