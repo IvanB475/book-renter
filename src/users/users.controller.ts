@@ -60,7 +60,7 @@ export class UsersController {
         try {
             const responseToUser = await this.usersService.loginService(userData.username, userData.password);
             response.status(200);
-            return response.send(responseToUser)
+            return response.send(responseToUser);
         } catch (err) {
             console.log(err);
             if (err.status == 401) {
@@ -71,3 +71,4 @@ export class UsersController {
         }
     }
 }
+

@@ -103,8 +103,7 @@ export class BooksController {
         status: 200,
         description: 'Book was successfully edited'
     })
-    @UsePipes(new JoiValidationPipe(schema.editBook))
-    async editBookController(@Body() bookInfo: editBookInfoDto, @Param('id') bookId: number) {
+    async editBookController(@Body(new JoiValidationPipe(schema.editBook)) bookInfo: editBookInfoDto, @Param('id') bookId: number) {
         try {
             return await this.booksService.editBookService(bookInfo, bookId);
         } catch (err) {

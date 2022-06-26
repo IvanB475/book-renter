@@ -6,9 +6,11 @@ import { AppConfigService } from 'src/config/app.config.service';
 import { ConfigService } from '@nestjs/config';
 import { isUserMiddleware } from 'src/middlewares/isUser.middleware';
 import { isAdminMiddleware } from 'src/middlewares/isAdmin.middleware';
+import { BooksDAL } from './books.DAL';
+import { UsersDAL } from 'src/users/users.DAL';
 
 @Module({
-  providers: [BooksService, UtilsService, AppConfigService, ConfigService],
+  providers: [BooksService, UtilsService, AppConfigService, ConfigService, BooksDAL, UsersDAL],
   controllers: [BooksController]
 })
 export class BooksModule implements NestModule {

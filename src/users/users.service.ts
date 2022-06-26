@@ -1,22 +1,16 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UtilsService } from 'src/utils/utils.service';
-import { EntityManager } from 'typeorm';
-import { RoleEntity } from './entities/RoleEntity';
-import { UserEntity } from './entities/UserEntity';
+import { UsersDAL } from './users.DAL';
 
 @Injectable()
 export class UsersService {
     constructor(private utilsService: UtilsService,
-        private entityManager: EntityManager) { }
+        private usersDAL: UsersDAL) { }
 
     async signUpService(username: string, password: string) {
         const hashedPassword = await this.utilsService.hashPassword(password);
-        const newUser = new UserEntity(username, hashedPassword);
-        const userRole = await this.entityManager.findOneBy(RoleEntity, { name: 'user' })
-        newUser.role = userRole;
-        const user = await newUser.save();
+        const user = await this.usersDAL.signUp(username, hashedPassword)
         const token = this.utilsService.generateToken(user.id, user.role.name);
-
         const SUCCESS_RESPONSE_MESSAGE = 'welcome to book renter app!';
         const responseToUser = {
             message: SUCCESS_RESPONSE_MESSAGE,
@@ -26,7 +20,7 @@ export class UsersService {
     }
 
     async loginService(username: string, password: string) {
-        const user = await this.entityManager.createQueryBuilder(UserEntity, 'user').leftJoinAndSelect('user.role', 'role.name').where('user.username = :username', { username }).getOne();
+        const user = await this.usersDAL.login(username);
         const isUser = await this.utilsService.validateLogin(password, user.password)
         if (!isUser) {
             const FAILURE_RESPONSE_MESSAGE = 'wrong username or password';
