@@ -25,4 +25,10 @@ export class UsersDAL {
         const user = await this.entityManager.createQueryBuilder(UserEntity, 'user').leftJoinAndSelect('user.role', 'role.name').where('user.username = :username', { username }).getOne();
         return user;
     }
+
+
+    async findUserById(userId: number) {
+        const foundUser = await this.entityManager.findOneBy(UserEntity, { id: userId });
+        return foundUser;
+    }
 }
